@@ -1,8 +1,9 @@
 .App {
-  padding: 30px;
-  display: flex;
+    padding: 30px;
+    background-color: grey;
+    min-height: 100vh;
 }
 
 .App > div {
-  margin-right: 50px;
+    margin-right: 50px;
 }
