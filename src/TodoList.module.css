@@ -1,28 +1,32 @@
-.todoList {
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+/*.todoList {
+    margin: 40px;
+}*/
+/*
 
 .tasks {
     display: flex;
     justify-content: space-between;
 
 }
-.error{
+*/
+
+.error {
     border: red 1px solid;
 }
-.error_message{
+
+.error_message {
     color: red;
 }
-.active_filter{
- background-color: coral ;
+
+.active_filter {
+    background-color: coral;
 
 }
-.is_done{
+
+.is_done {
     opacity: 0.5;
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+
+
 }

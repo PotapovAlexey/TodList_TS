@@ -1,9 +1,7 @@
 .App {
-    padding: 30px;
-    background-color: grey;
+    /* background-color: bisque;*/
+    background-image: url("https://lh3.googleusercontent.com/proxy/ltNP3Oisp7hTKzUhmGaXe2vH0vlMmL7YPx5NjjHD6tYush-S2x9KZZmmCMrjQkLou6AdnMuP1cUnWVTMnJK50zVTN_nQVGX-VJEHgiF5xVw0-hvcfSfHyUI-cg");
+    background-size: cover;
     min-height: 100vh;
 }
 
-.App > div {
-    margin-right: 50px;
-}

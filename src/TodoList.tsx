@@ -1,8 +1,10 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
 import {FilterValuesType, TaskType} from "./App";
 import style from "./TodoList.module.css"
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
+import {Button, Checkbox, IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 type PropsType = {
     id: string                         //типизирование пропсов
@@ -16,6 +18,7 @@ type PropsType = {
     changeCheckboxStatus: (id: string, isDone: boolean, todoListID: string) => void
     changeTaskTitle: (id: string, title: string, todoListID: string) => void
     changeTodoListTitle: (todoListID: string, newTitle: string) => void
+
 }
 
 const TodoList = (props: PropsType) => {
@@ -42,11 +45,14 @@ const TodoList = (props: PropsType) => {
         <div className={style.todoList}>
             <h2>
                 <EditableSpan value={props.title} changeValue={changeTodoListTitle}/>
-
-                <button onClick={() => {
+                <IconButton
+                    color={"default"}
+                    onClick={() => {
                     props.removeTodoList(props.id)
-                }}>X
-                </button>
+                }}>
+                    <Delete/>
+                </IconButton>
+
             </h2>
             <AddItemForm addItem={addTask}/>
             <div>
@@ -64,12 +70,20 @@ const TodoList = (props: PropsType) => {
                         return (
 
                             <div key={t.id} className={t.isDone ? style.is_done : style.tasks}>
-                                <input type="checkbox"
+                                <Checkbox
+                                    color={"primary"}
                                        checked={t.isDone}
                                        onChange={changeCheckboxStatus}
                                 />
                                 <EditableSpan value={t.title} changeValue={changeTaskTitle}/>
-                                <button onClick={removeTask}>x</button>
+
+                                <IconButton
+                                    size={"small"}
+                                    area-label={"delete"}
+                                    color={"default"}
+                                    onClick={removeTask}>
+                                    <Delete/>
+                                </IconButton>
                             </div>
                         )
                     })
@@ -77,21 +91,27 @@ const TodoList = (props: PropsType) => {
             </div>
             <div>
 
-                <button
+                <Button
+                    variant={props.filter === "all" ? "contained" : "outlined"}
+                    color={props.filter === "all" ? "primary" : "default"}
                     onClick={onClickButtonAllHandler}
-                    className={props.filter === "all" ? style.active_filter : ""}
+                    className={(props.filter === "all" ? style.active_filter : "")}
                 >All
-                </button>
-                <button
+                </Button>
+                <Button
+                    variant={props.filter === "active" ? "contained" : "outlined"}
+                    color={props.filter === "active" ? "primary" : "primary"}
                     onClick={onClickButtonActiveHandler}
                     className={props.filter === "active" ? style.active_filter : ""}
                 >Active
-                </button>
-                <button
+                </Button>
+                <Button
+                    variant={props.filter === "completed" ? "contained" : "outlined"}
+                    color={props.filter === "completed" ? "primary" : "secondary"}
                     onClick={onClickButtonCompletedHandler}
-                    className={props.filter === "completed" ? style.active_filter : ""}
+                    /*className={props.filter === "completed" ? style.active_filter : ""}*/
                 >Completed
-                </button>
+                </Button>
             </div>
         </div>
     )

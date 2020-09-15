@@ -1,5 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import style from "./TodoList.module.css";
+import {IconButton, TextField,} from "@material-ui/core";
+import {AddBox} from "@material-ui/icons";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -38,15 +40,22 @@ function AddItemForm(props: AddItemFormPropsType) {
 
     return (
         <div>
-            <input
+            <TextField
+                variant={"outlined"}
                 placeholder="Add task"
                 value={title}
                 onChange={onChangeHandler}
                 onKeyPress={onPressHandler}
-                className={error ? style.error : ""}
+                error={!!error}
+                helperText={error}
+                label={"Title"}
             />
-            <button onClick={addNewTask}>Add</button>
-            {error && <div className={style.error_message}>{error}</div>}
+
+            <IconButton
+                color={"primary"}
+                onClick={addNewTask}>
+                <AddBox/>
+            </IconButton>
         </div>
     )
 }
